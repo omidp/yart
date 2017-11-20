@@ -33,12 +33,16 @@
 				onclick="w3_close()" title="close menu"><i
 				class="fa fa-remove fa-fw"></i> Close Menu</a> 
 				
-				<a href="#{_ctx}/app/home"
+			<a th:href="@{/home}"
 				class="w3-bar-item w3-button w3-padding"><i
 				class="fa fa-users fa-fw"></i> <span th:text="#{application.home}" ></span></a> 
+				
+			<a th:href="@{/datasources}"
+				class="w3-bar-item w3-button w3-padding"><i
+				class="fa fa-users fa-fw"></i> <span th:text="#{application.datasources}" ></span></a>	
 			
 			<div sec:authorize="hasRole('ROLE_USER')">
-			<a href="#{_ctx}/app/logout"
+			<a th:href="@{/logout}"
 					class="w3-bar-item w3-button w3-padding"><i
 					class="fa fa-bullseye fa-fw"></i><span th:text="#{application.logout}" ></span></a>
 			</div>			
