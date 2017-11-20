@@ -1,4 +1,4 @@
-package com.yart.web;
+package com.yart.app.web;
 
 import java.util.Map;
 
@@ -10,10 +10,22 @@ public class HomeController
 {
 
     @RequestMapping("/")
-    public String index(Map<String, Object> model)
+    public String index()
+    {
+        return "login";
+    }
+
+    @RequestMapping("/home")
+    public String home(Map<String, Object> model)
     {
         model.put("message", "Hello");
         return "home";
+    }
+
+    @RequestMapping("/login")
+    public String login()
+    {
+        return "login";
     }
 
 }

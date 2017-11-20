@@ -1,4 +1,4 @@
-package com.yart;
+package com.yart.app;
 
 import java.io.PrintStream;
 import java.util.Arrays;

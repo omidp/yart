@@ -1,4 +1,4 @@
-package com.yart;
+package com.yart.app;
 
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
@@ -13,7 +13,7 @@ public class ContainerConfig
     @Bean
     public EmbeddedServletContainerFactory containerFactory()
     {
-        UndertowEmbeddedServletContainerFactory em = new UndertowEmbeddedServletContainerFactory(8180);
+        UndertowEmbeddedServletContainerFactory em = new UndertowEmbeddedServletContainerFactory(8888);
         em.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notfound.html"));
         return em;
     }

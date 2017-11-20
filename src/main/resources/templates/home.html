@@ -1,30 +1,13 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Yet Another Reporting Tool</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="layout">
 
-<link rel="stylesheet" th:href="@{/css/main.css}" />
+	 <section layout:fragment="content">
+	 	home body
+	 </section>
 
-</head>
-<body>
 
-	<div th:replace="fragments/header :: header"/>
 
-	<div class="container">
-
-		<div class="starter-template">
-			<h1>Spring Boot Web Thymeleaf Example</h1>
-			<h2>
-				<span th:text="'Message: ' + ${message}"></span>
-			</h2>
-		</div>
-
-	</div>
-	
-	
-	<div th:replace="fragments/footer :: footer"/>
-	
-
-</body>
 </html>
