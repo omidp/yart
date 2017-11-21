@@ -3,8 +3,8 @@
 
 </head>
 <body>
-	<div th:fragment="paging (pageSizes, selectedPageSize, result, path)">
-
+	<div th:fragment="paging (pageSizes, selectedPageSize, result, path)" th:if="${not #lists.isEmpty(result.content) and #lists.size(result.content) > 0}">
+		<div th:text="${result.totalPages}"></div>
 		<!-- Top container -->
 		<div class="form-group col-md-1" style="display: none;">
 			<select class="form-control pagination" id="pageSizeSelect"
@@ -20,26 +20,26 @@
 			<ul>
 				<li th:class="${result.number == 0} ? disabled"><a
 					class="prev"
-					th:href="@{${path}(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=1)}+${#strings.isEmpty(filterParams) ? '' : filterParams}">&laquo;</a>
 				</li>
 				<li th:class="${result.number == 0} ? disabled"><a
 					class="prev"
-					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.number})}">&larr;</a>
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.number})}+${#strings.isEmpty(filterParams) ? '' : filterParams}">&larr;</a>
 				</li>
 				<li
 					th:class="${result.number == (page - 1)} ? 'active pointer-disabled'"
 					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
 					<a class="pageLink"
-					th:href="@{${path}(pageSize=${selectedPageSize}, page=${page})}"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${page})}+${#strings.isEmpty(filterParams) ? '' : filterParams}"
 					th:text="${page}"></a>
 				</li>
 				<li th:class="${result.number + 1 == result.totalPages} ? disabled">
-					<a class="next"
-					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.number + 2})}">&rarr;</a>
+					<a class="next" th:class="${result.number + 1 == result.totalPages} ? 'next disabled'"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.number + 2})}+${#strings.isEmpty(filterParams) ? '' : filterParams}">&rarr;</a>
 				</li>
 				<li th:class="${result.number + 1 == result.totalPages} ? disabled">
-					<a class="next"
-					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.totalPages})}">&raquo;</a>
+					<a class="next" th:class="${result.number + 1 == result.totalPages} ? 'next disabled'"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.totalPages})}+${#strings.isEmpty(filterParams) ? '' : filterParams}">&raquo;</a>
 				</li>
 			</ul>
 		</nav>

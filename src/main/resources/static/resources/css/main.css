@@ -1,14 +1,11 @@
-
 @font-face {
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: normal;
 	src: url("fonts/eot/IRANSansWeb.eot");
-	src: 
-		/* FF39+,Chrome36+, Opera24+*/
-		 url("fonts/woff/IRANSansWeb.woff") format('woff'),
-		/* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url("fonts/ttf/IRANSansWeb.ttf") format('truetype');
+	src: /* FF39+,Chrome36+, Opera24+*/ url("fonts/woff/IRANSansWeb.woff")
+		format( 'woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url("fonts/ttf/IRANSansWeb.ttf") format( 'truetype');
 }
 
 html, body, header, footer, section {
@@ -38,11 +35,9 @@ h1, h2, h3, h4, h5, h6 {
 	float: left;
 }
 
-span, label{
+span, label {
 	font-family: IRANSans, FontAwesome, Yekan, Tahoma !important;
 }
-
-
 
 .logo-bg {
 	background: url(../img/login-background.jpg);
@@ -68,7 +63,8 @@ html, body {
 	margin-top: 100px;
 }
 
-.ui-message-info, .ui-message-error, .ui-message-warn, .ui-message-fatal{
+.ui-message-info, .ui-message-error, .ui-message-warn, .ui-message-fatal
+	{
 	direction: rtl;
 	margin: 0;
 }
@@ -77,80 +73,96 @@ form, .form-item {
 	direction: rtl;
 }
 
-
-.btn-icon > span{
+.btn-icon>span {
 	margin-top: -4px !important;
 	text-indent: initial !important;
 	background-image: none !important;
 	overflow: visible;
 }
 
-.button.red {    
-    background-color: #ff3366;
+.button.red {
+	background-color: #ff3366;
 }
 
-.button.green {    
-    background-color: #099c1a;
+.button.green {
+	background-color: #099c1a;
 }
 
-.button.green:hover{
+.button.green:hover {
 	color: #fff;
 	background-color: #1d6a26;
 }
 
 .button.tiny {
-    border-radius: 3px;
-    font-size: 12px;
-    min-height: 32px;
-    padding: 3px 1px;
+	border-radius: 3px;
+	font-size: 12px;
+	min-height: 32px;
+	padding: 3px 1px;
 }
 
-.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
-	color:#ffffff !important;
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	color: #ffffff !important;
 }
 
-.ui-paginator{
+.ui-paginator {
 	direction: ltr !important;
 }
 
-.ui-paginator-rpp-options{
+.ui-paginator-rpp-options {
 	display: inline !important;
 	width: 6% !important;
 }
-.ui-paginator-page.ui-corner-all{
+
+.ui-paginator-page.ui-corner-all {
 	color: #000 !important;
 	font-size: 0.7em;
-	font-family: IRANSans, Yekan, Tahoma; 
+	font-family: IRANSans, Yekan, Tahoma;
 }
 
-.ui.table thead th{
+.ui.table thead th {
 	text-align: center !important;
 }
 
-#uiMessages{
+#uiMessages {
 	direction: rtl;
-}
-.ui-messages-error-icon{
-	display: none;
-}
-fieldset{
-	direction: rtl;
-}
-.rtl-dir{
-	direction: rtl;
-}
-.ltr-dir{
-	direction: ltr;
-}
-.toggler-clz{
-	min-height: 250px;
-}
-.ui-datepicker-month, .ui-datepicker-year
-{
-	display: inline-block;
-	font-family: IRANSans, Yekan, Tahoma !important; 
 }
 
-.ui-datepicker-close, .ui-datepicker-current{
+.ui-messages-error-icon {
+	display: none;
+}
+
+fieldset {
+	direction: rtl;
+}
+
+.rtl-dir {
+	direction: rtl;
+}
+
+.ltr-dir {
+	direction: ltr;
+}
+
+.toggler-clz {
+	min-height: 250px;
+}
+
+.ui-datepicker-month, .ui-datepicker-year {
+	display: inline-block;
 	font-family: IRANSans, Yekan, Tahoma !important;
+}
+
+.ui-datepicker-close, .ui-datepicker-current {
+	font-family: IRANSans, Yekan, Tahoma !important;
+}
+
+.pointer-disabled {
+	pointer-events: none;
+	cursor: default;
+}
+
+a.disabled {
+	pointer-events: none;
+	cursor: default;
 }

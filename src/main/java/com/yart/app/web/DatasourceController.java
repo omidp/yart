@@ -81,6 +81,8 @@ public class DatasourceController
         model.addAttribute("pageSizes", PAGE_SIZES);
         model.addAttribute("pager", pager);
         model.addAttribute("result", list);
+        model.addAttribute("filterParams", QueryMapper.parameterMap(filter));
+        
 
         return "ds/dsList";
     }
@@ -94,11 +96,20 @@ public class DatasourceController
 
     public static class DatasourceFilter implements Filter
     {
-        public DatasourceFilter()
+        private String name;
+        private Boolean active;
+        
+        
+        @QParam(operator=ParamOperator.EQ, propertyName="active")
+        public Boolean getActive()
         {
+            return active;
         }
 
-        private String name;
+        public void setActive(Boolean active)
+        {
+            this.active = active;
+        }
 
         @QParam(operator=ParamOperator.LIKE, propertyName="name")
         public String getName()

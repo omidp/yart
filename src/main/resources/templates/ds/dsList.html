@@ -5,18 +5,25 @@
 	layout:decorator="layout">
 
 <section layout:fragment="content">
-	
-	<form th:action="''" method="get" th:object="${filter}" >
+	<form th:action="''" method="get" th:object="${filter}" id="frm">
 		<input type="text" th:value="*{name}" name="name"/>
 		
+		<select th:value="*{active}" name="active">
+			<option th:text="#{application.select}"></option>
+			<option value="true" th:text="#{application.active}" th:if="*{active}" selected="selected"></option>
+			<option value="true" th:text="#{application.active}" th:if="*{null == active or !active}"></option>
+			<option value="false" th:text="#{application.inactive}" th:if="*{null == active or active}"></option>
+			<option value="false" th:text="#{application.inactive}" th:if="*{null != active and !active}" selected="selected"></option>
+		</select>
+		
 		<button type="submit" th:text="#{application.search}"></button>
-		<button type="submit" th:text="#{application.reset}"></button>	
+		<button type="reset" th:text="#{application.reset}" onclick="return common.resetForm(this.form);"></button>	
 	</form>
 	
 	
 	<div th:if="${#lists.isEmpty(result.content)}">No Data</div>
 
-	<table class="table" th:if="${not #lists.isEmpty(result.content)}">
+	<table class="table" th:if="${not #lists.isEmpty(result.content) and #lists.size(result.content) > 0}">
 		<tr>
 			<th>First name</th>
 			<th>Last name</th>

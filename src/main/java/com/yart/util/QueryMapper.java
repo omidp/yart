@@ -94,13 +94,13 @@ public class QueryMapper
                                 if (entityInstance instanceof EntityModel)
                                 {
                                     EntityModel po = (EntityModel) entityInstance;
-//                                    po.setId((Long) recordValue);
+                                    // po.setId((Long) recordValue);
                                     Method[] m = po.getClass().getMethods();
-                                    if(m != null)
+                                    if (m != null)
                                     {
                                         for (Method method : m)
                                         {
-                                            if(method.getName().equals("setId"))
+                                            if (method.getName().equals("setId"))
                                             {
                                                 Class<?> c = method.getParameterTypes()[0];
                                                 method.invoke(po, ReflectionUtil.toObject(c, recordValue));
@@ -176,14 +176,14 @@ public class QueryMapper
                 }
             }
         }
-        if(props.isEmpty())
+        if (props.isEmpty())
         {
-            //check for field
+            // check for field
             List<Field> fields = ReflectionUtil.getFields(clz);
             for (Field field : fields)
             {
                 Column annotation = field.getAnnotation(Column.class);
-                if(annotation != null)
+                if (annotation != null)
                 {
                     String dbColumnName = annotation.name();
                     props.add(new Property(dbColumnName, field.getName()));
@@ -197,6 +197,42 @@ public class QueryMapper
             }
         }
         return props;
+    }
+
+    public static String parameterMap(Filter filter)
+    {
+        Class<? extends Filter> clz = filter.getClass();
+        PropertyDescriptor[] pds = PropertyUtils.getPropertyDescriptors(clz);
+        StringBuilder queryParams = new StringBuilder();
+        for (PropertyDescriptor pd : pds)
+        {
+            if (pd.getPropertyType().equals(Class.class))
+                continue;
+            try
+            {
+                Method getter = pd.getReadMethod();
+                if (getter != null)
+                {
+                    Object val = pd.getReadMethod().invoke(filter, null);
+                    String propertyName = pd.getName();
+                    if (val == null)
+                        continue;
+                    if (val instanceof String && StringUtil.isEmpty(String.valueOf(val)))
+                    {
+                        continue;
+                    }
+                    queryParams.append("&");
+                    queryParams.append(propertyName).append("=").append(val);
+                }
+            }
+            catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        if (StringUtil.isEmpty(queryParams.toString()))
+            return null;
+        return queryParams.toString();
     }
 
     public static void filterMap(Filter filter, Criteria criteria)
@@ -216,7 +252,7 @@ public class QueryMapper
                     QParam annotation = getter.getAnnotation(QParam.class);
                     Object invoke = pd.getReadMethod().invoke(filter, null);
                     String propertyName = pd.getName();
-                    if(StringUtil.isNotEmpty(annotation.propertyName()))
+                    if (StringUtil.isNotEmpty(annotation.propertyName()))
                         propertyName = annotation.propertyName();
                     filterItems.add(new ParameterItem(propertyName, annotation.operator(), invoke));
                 }
@@ -229,16 +265,16 @@ public class QueryMapper
         for (ParameterItem item : filterItems)
         {
             Object val = item.getValue();
-            if(val == null)
+            if (val == null)
                 continue;
-            if(val instanceof String && StringUtil.isEmpty(String.valueOf(val)))
-            {                   
+            if (val instanceof String && StringUtil.isEmpty(String.valueOf(val)))
+            {
                 continue;
             }
-            if(val instanceof Date)
+            if (val instanceof Date)
             {
                 Calendar cal = Calendar.getInstance();
-                cal.setTime((Date)val);
+                cal.setTime((Date) val);
                 cal.set(Calendar.HOUR, 0);
                 cal.set(Calendar.MINUTE, 0);
                 cal.set(Calendar.SECOND, 0);
@@ -277,7 +313,7 @@ public class QueryMapper
             {
                 criteria.add(Restrictions.sqlRestriction(String.valueOf(item.getValue())));
             }
-        }        
+        }
     }
 
 }
