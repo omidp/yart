@@ -14,7 +14,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.service.spi.ServiceException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.repository.support.PageableExecutionUtils;
+import org.springframework.data.repository.support.PageableExecutionUtils.TotalSupplier;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yart.app.dao.AbstractDAO;
@@ -33,7 +37,7 @@ public abstract class AbstractService<E>
     public abstract AbstractDAO<E> getDao();
 
     @Transactional(readOnly = true)
-    public List<E> load(int first, int pageSize, Class<E> clz, Restriction restriction)
+    public Page<E> load(int first, int pageSize, Class<E> clz, Restriction restriction)
     {
         // The JPA spec does not allow a alias to be given to a fetch join, so
         // we use hibernate seesion to ignore the spec
@@ -48,7 +52,13 @@ public abstract class AbstractService<E>
         if (pageSize > 0)
             criteria.setMaxResults(pageSize);
         result = criteria.list();
-        return result;
+        return PageableExecutionUtils.getPage(result, new PageRequest(first, pageSize), new TotalSupplier() {
+
+            @Override
+            public long get() {
+                return count(clz, restriction);
+            }
+        });
     }
 
    

@@ -5,7 +5,15 @@
 	layout:decorator="layout">
 
 <section layout:fragment="content">
-
+	
+	<form th:action="''" method="get" th:object="${filter}" >
+		<input type="text" th:value="*{name}" name="name"/>
+		
+		<button type="submit" th:text="#{application.search}"></button>
+		<button type="submit" th:text="#{application.reset}"></button>	
+	</form>
+	
+	
 	<div th:if="${#lists.isEmpty(result.content)}">No Data</div>
 
 	<table class="table" th:if="${not #lists.isEmpty(result.content)}">
