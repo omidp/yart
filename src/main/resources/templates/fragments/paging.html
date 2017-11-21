@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+	<div th:fragment="paging (pageSizes, selectedPageSize, result, path)">
+
+		<!-- Top container -->
+		<div class="form-group col-md-1" style="display: none;">
+			<select class="form-control pagination" id="pageSizeSelect"
+				>
+				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+					th:value="${pageSize}"
+					th:selected="${pageSize} == ${selectedPageSize}"></option>
+			</select>
+		</div>
+		
+		<nav th:if="${result.totalPages != 1}"
+			class="pagination align-center">
+			<ul>
+				<li th:class="${result.number == 0} ? disabled"><a
+					class="prev"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+				</li>
+				<li th:class="${result.number == 0} ? disabled"><a
+					class="prev"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.number})}">&larr;</a>
+				</li>
+				<li
+					th:class="${result.number == (page - 1)} ? 'active pointer-disabled'"
+					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+					<a class="pageLink"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${page})}"
+					th:text="${page}"></a>
+				</li>
+				<li th:class="${result.number + 1 == result.totalPages} ? disabled">
+					<a class="next"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.number + 2})}">&rarr;</a>
+				</li>
+				<li th:class="${result.number + 1 == result.totalPages} ? disabled">
+					<a class="next"
+					th:href="@{${path}(pageSize=${selectedPageSize}, page=${result.totalPages})}">&raquo;</a>
+				</li>
+			</ul>
+		</nav>
+
+	</div>
+
+</body>
+</html>

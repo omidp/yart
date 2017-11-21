@@ -4,9 +4,27 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorator="layout">
 
-	 <section layout:fragment="content">
-	 	datasources list
-	 </section>
+<section layout:fragment="content">
+
+	<div th:if="${#lists.isEmpty(result.content)}">No Data</div>
+
+	<table class="table" th:if="${not #lists.isEmpty(result.content)}">
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Age</th>
+		</tr>
+		<tr th:each="item : ${result.content}">
+			<td th:text="${item.name}"></td>
+
+		</tr>
+	</table>
+
+	<div
+		th:replace="fragments/paging :: paging (pageSizes=${pageSizes},selectedPageSize=${selectedPageSize}, result=${result}, path='datasources')">...</div>
+
+
+</section>
 
 
 

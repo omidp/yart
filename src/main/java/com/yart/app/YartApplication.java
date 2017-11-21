@@ -7,6 +7,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,8 +20,9 @@ import org.springframework.core.env.Environment;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-@Import(value=ContainerConfig.class)
+@EnableConfigurationProperties
 @PropertySource({"classpath:database.properties"})
+@Import(ContainerConfig.class)
 public class YartApplication
 {
 
