@@ -166,3 +166,7 @@ a.disabled {
 	pointer-events: none;
 	cursor: default;
 }
+
+.actionbuttons{
+	margin-top: 10px;
+}

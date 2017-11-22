@@ -5,8 +5,23 @@
 	layout:decorator="layout">
 
 <section layout:fragment="content">
-	<form th:action="''" method="get" th:object="${filter}" id="frm">
-		<input type="text" th:value="*{name}" name="name"/>
+	<form th:action="''" method="get" th:object="${filter}" id="frm" class="forms">
+	
+		<div class="col col-6">
+
+		<div class="form-item">					
+			<label>								
+			 	<span th:text="#{application.name}" th:remove="tag"></span>
+			</label>
+			<input type="text" th:value="*{name}" name="name"/>
+			<div class="desc">
+				<span th:text="#{application.namedesc}" th:remove="tag"></span>
+			</div>
+			
+		</div> 
+
+	</div>
+		
 		
 		<select th:value="*{active}" name="active">
 			<option th:text="#{application.select}" value=""></option>
@@ -16,27 +31,26 @@
 			<option value="false" th:text="#{application.inactive}" th:if="*{null != active and !active}" selected="selected"></option>
 		</select>
 		
-		<button type="submit" th:text="#{application.search}"></button>
-		<button type="submit" th:text="#{application.reset}" th:formaction="@{/datasources/reset}"></button>	
+		<div class="actionbuttons">
+			<button type="submit" th:text="#{application.search}"></button>
+			<button type="submit" th:text="#{application.reset}" th:formaction="@{/member/datasources/reset}"></button>
+		</div>	
 	</form>
 	
 	
-	<div th:if="${#lists.isEmpty(result.content)}">No Data</div>
+	<div th:if="${#lists.isEmpty(result.content)}" th:text="#{application.nodata}">No Data</div>
 
 	<table class="table" th:if="${not #lists.isEmpty(result.content) and #lists.size(result.content) > 0}">
 		<tr>
-			<th><a th:href="@{/datasources(sort='name,desc', sort='active,asc')}">First name</a> </th>
-			<th>Last name</th>
-			<th>Age</th>
+			<th><a th:href="@{/member/datasources(sort='name,desc')}" th:text="#{application.name}">name</a> </th>			
 		</tr>
 		<tr th:each="item : ${result.content}">
 			<td th:text="${item.name}"></td>
-
 		</tr>
 	</table>
 
 	<div
-		th:replace="fragments/paging :: paging (pageSizes=${pageSizes},selectedPageSize=${selectedPageSize}, result=${result}, path='datasources')">...</div>
+		th:replace="fragments/paging :: paging (pageSizes=${pageSizes},selectedPageSize=${selectedPageSize}, result=${result}, path='/member/datasources')">...</div>
 
 
 </section>

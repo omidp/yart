@@ -20,7 +20,7 @@ import com.yart.framework.web.AbstractQueryController;
  *
  */
 @Controller
-@RequestMapping("/datasources")
+@RequestMapping("/member/datasources")
 public class DatasourceController extends AbstractQueryController<DatasourceEntity>
 {
 
@@ -36,7 +36,7 @@ public class DatasourceController extends AbstractQueryController<DatasourceEnti
     @GetMapping("/reset")
     public String reset()
     {
-        return "redirect:/datasources";
+        return "redirect:/member/datasources";
     }
 
     @Override
