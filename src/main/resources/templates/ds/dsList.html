@@ -5,6 +5,10 @@
 	layout:decorator="layout">
 
 <section layout:fragment="content">
+	
+	<div th:text="${msg}"></div>
+
+
 	<form th:action="''" method="get" th:object="${filter}" id="frm" class="forms">
 	
 		<div class="col col-6">
@@ -37,7 +41,7 @@
 		</div>	
 	</form>
 	
-	<a th:href="@{/datasourceEdit}" th:text="#{application.create}"></a>
+	<a th:href="@{/member/datasourceEdit}" th:text="#{application.create}"></a>
 	<div th:if="${#lists.isEmpty(result.content)}" th:text="#{application.nodata}">No Data</div>
 
 	<table class="table" th:if="${not #lists.isEmpty(result.content) and #lists.size(result.content) > 0}">
@@ -45,7 +49,9 @@
 			<th><a th:href="@{/member/datasources(sort='name,desc')}" th:text="#{application.name}">name</a> </th>			
 		</tr>
 		<tr th:each="item : ${result.content}">
-			<td th:text="${item.name}"></td>
+			<td>
+				<a th:href="@{/member/datasourceEdit(dsId=${item.id})}"  th:text="${item.name}"></a>
+			</td>
 		</tr>
 	</table>
 

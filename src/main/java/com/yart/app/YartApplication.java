@@ -16,6 +16,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import com.yart.util.SpringUtil;
+
 //@SpringBootApplication
 /**
  *
@@ -61,6 +63,12 @@ public class YartApplication
             }
 
         };
+    }
+    
+    @Bean
+    public SpringUtil springUtil()
+    {
+        return new SpringUtil();
     }
 
 }

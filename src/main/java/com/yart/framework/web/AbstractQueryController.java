@@ -45,7 +45,6 @@ public abstract class AbstractQueryController<E>
     @InitBinder
     public void initBinder(WebDataBinder binder)
     {
-        // binder.setRequiredFields(getRequiredFields());
         init(binder);
     }
 
