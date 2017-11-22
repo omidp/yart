@@ -15,13 +15,15 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.data.repository.support.PageableExecutionUtils.TotalSupplier;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yart.app.dao.AbstractDAO;
+import com.yart.util.StringUtil;
 
 /**
  * @author Omid Pourhadi
@@ -35,9 +37,16 @@ public abstract class AbstractService<E>
     protected EntityManager entityManager;
 
     public abstract AbstractDAO<E> getDao();
+    
+    
+    @Transactional(readOnly = true)
+    public Page<E> load(Pageable pageable, Class<E> clz, Restriction restriction)
+    {
+        return load(pageable, clz, restriction, null);
+    }
 
     @Transactional(readOnly = true)
-    public Page<E> load(int first, int pageSize, Class<E> clz, Restriction restriction)
+    public Page<E> load(Pageable pageable, Class<E> clz, Restriction restriction, Sort sort)
     {
         // The JPA spec does not allow a alias to be given to a fetch join, so
         // we use hibernate seesion to ignore the spec
@@ -46,13 +55,24 @@ public abstract class AbstractService<E>
         Criteria criteria = hibernateSession.createCriteria(clz);
         if (restriction != null)
             restriction.applyFilter(criteria);
-
-        criteria.setFirstResult(first);
+        if (sort != null)
+        {
+            sort.forEach(s -> {                
+                if(StringUtil.isNotEmpty(s.getProperty()))
+                {
+                    if (s.isAscending())
+                        criteria.addOrder(org.hibernate.criterion.Order.asc(s.getProperty()));
+                    else
+                        criteria.addOrder(org.hibernate.criterion.Order.desc(s.getProperty()));
+                }
+            });
+        }
+        criteria.setFirstResult(pageable.getOffset());
         // set 0 for unlimited
-        if (pageSize > 0)
-            criteria.setMaxResults(pageSize);
+        if (pageable.getPageSize() > 0)
+            criteria.setMaxResults(pageable.getPageSize());
         result = criteria.list();
-        return PageableExecutionUtils.getPage(result, new PageRequest(first, pageSize), new TotalSupplier() {
+        return PageableExecutionUtils.getPage(result, pageable, new TotalSupplier() {
 
             @Override
             public long get() {

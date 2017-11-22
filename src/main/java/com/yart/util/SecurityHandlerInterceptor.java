@@ -19,6 +19,7 @@ public class SecurityHandlerInterceptor implements HandlerInterceptor
         request.setAttribute("anonymous", AuthenticationUtil.isAnonymous());
         request.setAttribute("currentUserName", AuthenticationUtil.getUsername());
         request.setAttribute("currentUserId", AuthenticationUtil.getUserId());
+        request.setAttribute("_ctx", request.getContextPath());
         return true;
     }
 

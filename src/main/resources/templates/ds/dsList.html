@@ -17,7 +17,7 @@
 		</select>
 		
 		<button type="submit" th:text="#{application.search}"></button>
-		<button type="reset" th:text="#{application.reset}" onclick="return common.resetForm(this.form);"></button>	
+		<button type="submit" th:text="#{application.reset}" th:formaction="@{/datasources/reset}"></button>	
 	</form>
 	
 	
@@ -25,7 +25,7 @@
 
 	<table class="table" th:if="${not #lists.isEmpty(result.content) and #lists.size(result.content) > 0}">
 		<tr>
-			<th>First name</th>
+			<th><a th:href="@{/datasources(sort='name,desc', sort='active,asc')}">First name</a> </th>
 			<th>Last name</th>
 			<th>Age</th>
 		</tr>

@@ -20,6 +20,7 @@ import javax.persistence.Transient;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.data.domain.Sort;
 
 import com.yart.app.domain.EntityModel;
 import com.yart.app.web.Filter;
@@ -314,6 +315,18 @@ public class QueryMapper
                 criteria.add(Restrictions.sqlRestriction(String.valueOf(item.getValue())));
             }
         }
+    }
+
+    public static String parameterFilterMap(Sort sort)
+    {
+        if(sort == null)
+            return null;
+        StringBuilder sb = new StringBuilder();
+        sort.forEach(s->{
+            sb.append("&").append("sort=");
+            sb.append(s.getProperty()).append(",").append(s.isAscending() ? "asc" : "desc");
+        });
+        return sb.toString();
     }
 
 }
