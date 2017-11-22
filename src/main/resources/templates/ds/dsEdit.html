@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="layout">
+
+<section layout:fragment="content">
+	
+	<form th:action="@{/datasourceEdit}" method="post" th:object="${instance}" id="frm" class="forms">
+	
+		<div class="col col-6">
+
+		<div class="form-item">					
+			<label>					
+				<span class="req">*</span>			
+			 	<span th:text="#{application.name}" th:remove="tag"></span>
+			 	<span class="req" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+			</label>
+			<input type="text" th:value="*{name}" name="name"/>
+			<div class="desc">
+				<span th:text="#{application.namedesc}" th:remove="tag"></span>
+			</div>
+			
+		</div> 
+
+	</div>
+		
+		
+	
+		
+		<div class="actionbuttons">
+			<button type="submit" th:text="#{application.create}"></button>
+			<button type="submit" th:text="#{application.back}" th:formaction="@{/member/datasourceEdit/back}"></button>
+		</div>	
+	</form>
+	
+	
+
+</section>
+
+
+
+</html>

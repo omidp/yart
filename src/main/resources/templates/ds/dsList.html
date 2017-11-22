@@ -37,7 +37,7 @@
 		</div>	
 	</form>
 	
-	
+	<a th:href="@{/datasourceEdit}" th:text="#{application.create}"></a>
 	<div th:if="${#lists.isEmpty(result.content)}" th:text="#{application.nodata}">No Data</div>
 
 	<table class="table" th:if="${not #lists.isEmpty(result.content) and #lists.size(result.content) > 0}">

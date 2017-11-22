@@ -21,13 +21,13 @@ import com.yart.framework.web.AbstractQueryController;
  */
 @Controller
 @RequestMapping("/member/datasources")
-public class DatasourceController extends AbstractQueryController<DatasourceEntity>
+public class DatasourceQueryController extends AbstractQueryController<DatasourceEntity>
 {
 
     @Autowired
     DatasourceService datasourceService;
 
-    public DatasourceController()
+    public DatasourceQueryController()
     {
         super("ds/dsList");
     }
