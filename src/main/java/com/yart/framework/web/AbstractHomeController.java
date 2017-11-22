@@ -65,8 +65,10 @@ public abstract class AbstractHomeController<E extends EntityModel>
             String idParam = request.getParameter(editParamId());
             if (StringUtil.isNotEmpty(idParam))
             {
+                request.setAttribute("idDefined", true);
                 return getService().findById(getEntityClass(), Long.parseLong(idParam));
             }
+            request.setAttribute("idDefined", false);
             return getEntityClass().newInstance();
         }
         catch (InstantiationException | IllegalAccessException e)

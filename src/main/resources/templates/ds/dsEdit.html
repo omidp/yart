@@ -52,9 +52,12 @@
 
 
 		<div class="actionbuttons">
-			<button type="submit" th:text="#{application.create}"></button>
-			<button type="submit" th:text="#{application.back}"
-				th:formaction="@{/member/datasourceEdit/back}"></button>
+			<button type="submit" th:text="#{application.create}" th:if="${not idDefined}"></button>
+			<button type="submit" th:text="#{application.edit}" th:if="${idDefined}"></button>
+			<a  th:text="#{application.delete}"
+				th:if="${idDefined}"></a>
+			<a  th:text="#{application.back}"
+				th:href="@{/member/datasources}"></a>
 		</div>
 	</form>
 
