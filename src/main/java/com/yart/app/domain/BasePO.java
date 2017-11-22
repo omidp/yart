@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @MappedSuperclass
 public abstract class BasePO implements EntityModel
 {

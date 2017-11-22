@@ -1,13 +1,10 @@
-package com.yart.util;
+package com.yart.framework.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.yart.util.AuthenticationUtil;
 
 public class SecurityHandlerInterceptor implements HandlerInterceptor
 {

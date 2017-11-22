@@ -1,4 +1,4 @@
-package com.yart.util;
+package com.yart.framework.query;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -24,6 +24,9 @@ import org.springframework.data.domain.Sort;
 
 import com.yart.app.domain.EntityModel;
 import com.yart.app.web.Filter;
+import com.yart.util.CollectionUtil;
+import com.yart.util.ReflectionUtil;
+import com.yart.util.StringUtil;
 
 /**
  * @author omidp
@@ -200,11 +203,16 @@ public class QueryMapper
         return props;
     }
 
-    public static String parameterMap(Filter filter)
+    /**
+     * build query parameters from filter instance to keep it in pagination
+     * @param filter
+     * @return
+     */
+    public static String queryParams(Filter filter)
     {
         Class<? extends Filter> clz = filter.getClass();
         PropertyDescriptor[] pds = PropertyUtils.getPropertyDescriptors(clz);
-        StringBuilder queryParams = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (PropertyDescriptor pd : pds)
         {
             if (pd.getPropertyType().equals(Class.class))
@@ -222,8 +230,8 @@ public class QueryMapper
                     {
                         continue;
                     }
-                    queryParams.append("&");
-                    queryParams.append(propertyName).append("=").append(val);
+                    sb.append("&");
+                    sb.append(propertyName).append("=").append(val);
                 }
             }
             catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
@@ -231,12 +239,17 @@ public class QueryMapper
                 e.printStackTrace();
             }
         }
-        if (StringUtil.isEmpty(queryParams.toString()))
+        if (StringUtil.isEmpty(sb.toString()))
             return null;
-        return queryParams.toString();
+        return sb.toString();
     }
 
-    public static void filterMap(Filter filter, Criteria criteria)
+    /**
+     * add filter to hibernate criteria
+     * @param filter
+     * @param criteria
+     */
+    public static void criteriaFilter(Filter filter, Criteria criteria)
     {
         List<ParameterItem> filterItems = new ArrayList<>();
         Class<? extends Filter> clz = filter.getClass();
@@ -317,7 +330,12 @@ public class QueryMapper
         }
     }
 
-    public static String parameterFilterMap(Sort sort)
+    /**
+     * build query parameters from sort instance to keep it in pagination
+     * @param sort
+     * @return
+     */
+    public static String sortQueryParams(Sort sort)
     {
         if(sort == null)
             return null;

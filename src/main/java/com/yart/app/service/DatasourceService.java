@@ -7,6 +7,11 @@ import com.yart.app.dao.AbstractDAO;
 import com.yart.app.dao.DatasourceDao;
 import com.yart.app.domain.DatasourceEntity;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Service
 public class DatasourceService extends AbstractService<DatasourceEntity>
 {

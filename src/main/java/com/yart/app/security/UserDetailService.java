@@ -8,6 +8,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.yart.app.dao.UserDao;
 import com.yart.app.domain.User;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 public class UserDetailService implements UserDetailsService
 {
 
@@ -19,7 +24,7 @@ public class UserDetailService implements UserDetailsService
     {
         User user = userDao.findByUsername(username);
         if (user == null)
-            throw new UsernameNotFoundException("user should be admin");
+            throw new UsernameNotFoundException("username not found");
         return user;
     }
 

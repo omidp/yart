@@ -15,6 +15,11 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 
 import com.yart.app.security.UserDetailService;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

@@ -1,4 +1,4 @@
-package com.yart.util;
+package com.yart.framework.security;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

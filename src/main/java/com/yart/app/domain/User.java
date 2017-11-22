@@ -11,8 +11,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.yart.util.SecurityUserContext;
+import com.yart.framework.security.SecurityUserContext;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Entity
 @Table(name = "sec_user")
 public class User extends BasePO implements UserDetails, SecurityUserContext

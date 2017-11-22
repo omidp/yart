@@ -9,7 +9,7 @@
 		<input type="text" th:value="*{name}" name="name"/>
 		
 		<select th:value="*{active}" name="active">
-			<option th:text="#{application.select}"></option>
+			<option th:text="#{application.select}" value=""></option>
 			<option value="true" th:text="#{application.active}" th:if="*{active}" selected="selected"></option>
 			<option value="true" th:text="#{application.active}" th:if="*{null == active or !active}"></option>
 			<option value="false" th:text="#{application.inactive}" th:if="*{null == active or active}"></option>

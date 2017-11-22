@@ -7,9 +7,14 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.yart.app.dao.SpringSecurityAuditorAware;
 import com.yart.app.domain.User;
+import com.yart.app.security.SpringSecurityAuditorAware;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Configuration
 @EntityScan({ "com.yart.app.domain" })
 @EnableJpaRepositories({ "com.yart.app.dao" })

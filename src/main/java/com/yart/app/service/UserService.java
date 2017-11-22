@@ -7,6 +7,11 @@ import com.yart.app.dao.AbstractDAO;
 import com.yart.app.dao.UserDao;
 import com.yart.app.domain.User;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Service
 public class UserService extends AbstractService<User>
 {

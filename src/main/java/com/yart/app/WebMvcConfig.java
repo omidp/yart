@@ -21,11 +21,16 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import com.yart.util.SecurityHandlerInterceptor;
+import com.yart.framework.security.SecurityHandlerInterceptor;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Configuration
 public class WebMvcConfig
 {

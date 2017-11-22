@@ -1,4 +1,4 @@
-package com.yart.util;
+package com.yart.framework.security;
 
 import java.io.Serializable;
 

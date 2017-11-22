@@ -11,6 +11,11 @@ import org.hibernate.annotations.Type;
 import com.yart.app.domain.enums.DatabaseType;
 import com.yart.app.domain.enums.DatasourceType;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @Entity
 @Table(name = "b_datasource")
 public class DatasourceEntity extends PO

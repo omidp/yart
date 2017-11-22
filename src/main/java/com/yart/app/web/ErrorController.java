@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 @ControllerAdvice
 public class ErrorController
 {

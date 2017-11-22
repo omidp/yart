@@ -16,10 +16,11 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+
 /**
- * @author omid pourhadi : omidpourhadi AT gmail DOT com
- * @version 1.0
- * 
+ *
+ * @author Omid Pourhadi
+ *
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)

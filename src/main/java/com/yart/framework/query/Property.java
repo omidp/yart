@@ -1,4 +1,4 @@
-package com.yart.util;
+package com.yart.framework.query;
 
 import java.io.Serializable;
 

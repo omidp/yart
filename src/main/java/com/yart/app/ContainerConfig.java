@@ -6,6 +6,11 @@ import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 public class ContainerConfig
 {
 

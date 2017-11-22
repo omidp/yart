@@ -5,6 +5,11 @@ import org.springframework.data.repository.query.Param;
 
 import com.yart.app.domain.User;
 
+/**
+ *
+ * @author Omid Pourhadi
+ *
+ */
 public interface UserDao extends AbstractDAO<User>
 {
     
